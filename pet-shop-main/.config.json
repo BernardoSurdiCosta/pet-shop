@@ -1,0 +1,16 @@
+{
+    "database": {
+      "dialect": "mysql",
+      "host": "localhost",
+      "username": "root",
+      "password": "senai",
+      "database": "PetShop",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+  }
+  
