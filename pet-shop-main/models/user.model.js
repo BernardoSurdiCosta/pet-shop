@@ -4,7 +4,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       date_nas: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
       },
       email: {
         type: Sequelize.STRING,

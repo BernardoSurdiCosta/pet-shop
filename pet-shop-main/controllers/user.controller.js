@@ -12,12 +12,12 @@ module.exports = class UserController {
 
     async create(request, response) {
         const createUserSchema = yup.object({
-            name: yup.string().min(3),
-            date_nas: yup.date(),
-            email: yup.string().email(),
-            cpf: yup.string().min(11).max(11)       
+            name: yup.string(),
+            date_nas: yup.string(),
+            email: yup.string(),
+            cpf: yup.string()       
         })
-
+        console.log(request.body)
         const parsedUser = await createUserSchema
             .validate(request.body)
             .catch((error) => {
@@ -28,8 +28,9 @@ module.exports = class UserController {
         if (!parsedUser) {
             return
         }
-
+        
+        const  user = await User.create(parsedUser)
+        
         response.json(user)
-
     }
 }

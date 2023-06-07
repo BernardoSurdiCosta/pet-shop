@@ -1,28 +1,25 @@
 async function getAnimalsList() {
-    console.log('getAnimalsList')
-    const response = await fetch('http://localhost:3000/api/animals')
-    const data = await response.json()
-    
-    const animals = document.querySelectorAll('tr > td')
-    
-    animals.forEach(td => {
-      const tr = td.parentNode
-      tr.remove()
-    })
-    
+    console.log('getAnimalsList');
+    const response = await fetch('http://localhost:3000/api/animals');
+    const data = await response.json();
+  
+    console.log(data);
+     
     const animalsListContainer = document.getElementById('animal-list-container')
     
-    data.forEach(animal => {
+    data.animals.forEach(animals => {
         const newAnimaltr = document.createElement('tr')
         
-        newAnimaltr.id = animal.id
+        newAnimaltr.id = animals.id
         newAnimaltr.innerHTML = `
-          <td>${animal.name}</td>
-          <td>${animal.breed}</td>
-          <td>${animal.age}</td>
-          <td>${animal.weigth}</td>
-          <td>${animal.owner_name}</td>
-          <td>${animal.is_vacinated}</td>
+          <td>${animals.name}</td>
+          <td>${animals.breed}</td>
+          <td>${animals.age}</td>
+          <td>${animals.weight}</td>
+          <td>${animals.owner_name}</td>
+          <td>${animals.is_vacinated}</td>
+          <td><button type="button" class="btn btn-warning">Atualizar</button>
+          <button type="button" class="btn btn-danger">Excluir</button></td> 
         `
         
         animalsListContainer.appendChild(newAnimaltr)
@@ -35,12 +32,12 @@ getAnimalsList()
 const createAnimalbutton = document.getElementById('create-animal-button')
 
 createAnimalbutton.addEventListener('click', async (event) => {
-event.preventDefault()
+event.preventDefault();
 
     const name = document.querySelector('input[name="name"]').value
     const breed = document.querySelector('input[name="breed"]').value
     const age = document.querySelector('input[name="age"]').value
-    const weigth = document.querySelector('input[name="weigth"]').value
+    const weight = document.querySelector('input[name="weight"]').value
     const owner_name = document.querySelector('input[name="owner_name"]').value
     const is_vacinated = document.querySelector('input[name="is_vacinated"]').value
 
@@ -53,7 +50,7 @@ event.preventDefault()
             name,
             breed,
             age,
-            weigth,
+            weight,
             owner_name,
             is_vacinated,
         })

@@ -4,19 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="btn btn-dark" href="/home">Users</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-dark" href="/animals">Animals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark" href="/services">Service</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-dark" href="/serviceTypes">ServiceTypes</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+    <div id="insert">
     <h1>Meu Pet Shop ERP</h1>
     <form id="create-animal-form">
         <input class="create-user-input" type="text" name="name" placeholder="Nome do animal" />
         <input class="create-user-input" type="text" name="breed" placeholder="Raça" />
         <input class="create-user-input" type="text" name="age" placeholder="Idade" />
-        <input class="create-user-input" type="text" name="weigth" placeholder="Peso" />
+        <input class="create-user-input" type="text" name="weight" placeholder="Peso" />
         <input class="create-user-input" type="text" name="owner_name" placeholder="Nome do dono" />
         <input class="create-user-input" type="text" name="is_vacinated" placeholder="Vacinado" />
         <button id="create-animal-button" type="submit">Criar Animal</button>
     </form>
+    </div>
     <table id="animal-list-container">
         <tr>
             <th>Nome</th>
@@ -25,8 +48,9 @@
             <th>Peso</th>
             <th>Nome do dono</th>
             <th>Vacinado</th>
+            <th>Ações</th>
         </tr>
     </table>
-    <script src="../JS/animals.js"></script>
+    <script src="/animals.js"></script>
 </body>
 </html>

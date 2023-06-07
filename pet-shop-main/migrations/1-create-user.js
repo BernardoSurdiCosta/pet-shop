@@ -11,7 +11,7 @@ module.exports = {
           type: Sequelize.STRING,
         },
         date_nas: {
-          type: Sequelize.DATE,
+          type: Sequelize.STRING,
         },
         email: {
           type: Sequelize.STRING,

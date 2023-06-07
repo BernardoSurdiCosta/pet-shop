@@ -1,11 +1,11 @@
 {
     "database": {
-      "dialect": "mysql",
+      "dialect": "postgree",
       "host": "localhost",
-      "port": 3306,
-      "username": "root",
-      "password": "senai",
-      "database": "PetShop",
+      "port": 1000,
+      "username": "lucas",
+      "password": "abacaxi",
+      "database": "SuperMercado",
       "pool": {
         "max": 5,
         "min": 0,
@@ -14,4 +14,3 @@
       }
     }
   }
-  

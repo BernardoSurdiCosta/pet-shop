@@ -7,17 +7,16 @@ async function getUserList() {
 
   const userListContainer = document.getElementById('user-list-container');
 
-  // Limpar a lista existente
-  userListContainer.innerHTML = '';
-
   data.user.forEach(user => {
     const newUserTr = document.createElement('tr');
 
     newUserTr.innerHTML = `
       <td>${user.name}</td>
-      <td>${user.birthDate}</td>
+      <td>${user.date_nas}</td>
       <td>${user.email}</td>
       <td>${user.cpf}</td>
+      <td><button type="button" class="btn btn-warning">Atualizar</button>
+      <button type="button" class="btn btn-danger">Excluir</button></td>  
     `;
 
     userListContainer.appendChild(newUserTr);
@@ -32,7 +31,7 @@ createUserButton.addEventListener('click', async (event) => {
   event.preventDefault();
 
   const name = document.querySelector('input[name="name"]').value;
-  const birthDate = document.querySelector('input[name="birthDate"]').value;
+  const date_nas = document.querySelector('input[name="date_nas"]').value;
   const email = document.querySelector('input[name="email"]').value;
   const cpf = document.querySelector('input[name="cpf"]').value;
 
@@ -43,7 +42,7 @@ createUserButton.addEventListener('click', async (event) => {
     },
     body: JSON.stringify({
       name,
-      birthDate,
+      date_nas,
       email,
       cpf,
     }),

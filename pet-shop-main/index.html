@@ -4,24 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Pet Shop</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="btn btn-dark" href="/home">Users</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-dark" href="/animals">Animals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark" href="/services">Service</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-dark" href="/serviceTypes">ServiceTypes</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+    <div id="insert">
     <h1>Meu Pet Shop ERP</h1>
     <form id="create-user-form">
         <input class="create-user-input" type="text" name="name" placeholder="Nome do usuário" />
-        <input class="create-user-input" type="text" name="birthDate" placeholder="Data de nascimento" />
+        <input class="create-user-input" type="text" name="date_nas" placeholder="Data de nascimento" />
         <input class="create-user-input" type="email" name="email" placeholder="Email" />
         <input class="create-user-input" type="text" name="cpf" placeholder="CPF" />
         <button id="create-user-button" type="submit">Criar usuário</button>
     </form>
+    </div>
     <table id="user-list-container">
         <tr>
             <th>Nome</th>
             <th>Data de Nascimento</th>
             <th>Email</th>
             <th>CPF</th>
+            <th>Ações</th>
         </tr>
     </table>
     <script src="./script.js"></script>

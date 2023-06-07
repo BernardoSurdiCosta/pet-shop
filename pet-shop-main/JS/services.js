@@ -19,6 +19,8 @@ async function getServiceList() {
     <td>${service.service_type}</td>
     <td>${service.animal}</td>
     <td>${service.scheduled_date}</td>
+    <td><button type="button" class="btn btn-warning">Atualizar</button>
+    <button type="button" class="btn btn-danger">Excluir</button></td> 
     `
     serviceListContainer.appendChild(newServiceTr)
     })
