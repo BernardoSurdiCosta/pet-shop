@@ -34,5 +34,22 @@ module.exports = class AnimalController{
     const  animal = await Animal.create(parsedAnimal)
     
     response.json(animal)
-}
+    }
+
+    async delete(request, response) {
+        if(!request.params.id){
+            request.status(400).send({ message:"É necessário um id para deletar um animal"})
+            return
+        }
+
+        Animal.destroy({ where: {id: request.params.id}})
+            .then((data) => {
+                response.send({ deleteAnimalsCount: data})
+            })
+            .catch((erro) => {
+                response.status(500).send({
+                    message: erro.message || "Ocorreu erro ao tentar deletar o usuario"
+                })
+            })
+    }   
 }

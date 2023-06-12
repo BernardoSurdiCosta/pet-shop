@@ -30,12 +30,16 @@ app.use("/services.js", express.static('./JS/services.js'))
 
 app.get('/api/user',userController.getALL)
 app.post('/api/user',userController.create)
+app.delete('/api/user/:id',userController.delete)
+
 
 app.get('/api/animals',animalController.getALL)
 app.post('/api/animals',animalController.create)
+app.delete('/api/animals/:id',animalController.delete)
 
 app.get('/api/servicetypes',serviceTypesController.getALL)
 app.post('/api/servicetypes',serviceTypesController.create)
+app.delete('/api/servicetypes/:id', serviceTypesController.delete)
 
 /* app.get('/api/servicetypes',animalController.getAll)
 app.post('/api/servicetypes',animalController.create) */

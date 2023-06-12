@@ -4,19 +4,25 @@ async function getUserList() {
   const data = await response.json();
 
   console.log(data);
+  const users = document.querySelectorAll('tr > td')
+  users.forEach(td => {
+    const tr = td.parentNode
+    tr.remove()
+})
 
   const userListContainer = document.getElementById('user-list-container');
 
-  data.user.forEach(user => {
+  data.user.forEach((user) => {
     const newUserTr = document.createElement('tr');
 
+    newUserTr.id = `user-id-${user.id}`
     newUserTr.innerHTML = `
       <td>${user.name}</td>
       <td>${user.date_nas}</td>
       <td>${user.email}</td>
       <td>${user.cpf}</td>
       <td><button type="button" class="btn btn-warning">Atualizar</button>
-      <button type="button" class="btn btn-danger">Excluir</button></td>  
+      <button type="button" class="btn btn-danger delete-button" onclick="deleteUser(${user.id})">Excluir</button></td>  
     `;
 
     userListContainer.appendChild(newUserTr);
@@ -50,3 +56,21 @@ createUserButton.addEventListener('click', async (event) => {
 
   await getUserList();
 });
+
+async function deleteUser(UserId){
+  const deleteResult = await fetch(`http://localhost:3000/api/user/${UserId}`, {
+      method: 'DELETE'
+  })
+
+  const deleteResultJson = await deleteResult.json()
+
+  if(deleteResultJson.deleteUsersCount < 1){
+      console.error("Nenhum usuario foi deletado")
+      return
+  } 
+  
+  const userToBeDeleted = document.getElementById(`user-id-${UserId}`)
+  userToBeDeleted.remove()
+
+  return deleteResultJson
+}

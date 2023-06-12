@@ -33,4 +33,21 @@ module.exports = class UserController {
         
         response.json(user)
     }
+
+    async delete(request, response) {
+        if(!request.params.id){
+            request.status(400).send({ message:"É necessário um id para deletar um usuario"})
+            return
+        }
+
+        User.destroy({ where: {id: request.params.id}})
+            .then((data) => {
+                response.send({ deleteUsersCount: data})
+            })
+            .catch((erro) => {
+                response.status(500).send({
+                    message: erro.message || "Ocorreu erro ao tentar deletar o usuario"
+                })
+            })
+    }   
 }

@@ -4,19 +4,24 @@ async function getServiceTypes() {
     const data = await response.json();
   
     console.log(data);
+    const servicetypes = document.querySelectorAll('tr > td')
+    servicetypes.forEach(td => {
+      const tr = td.parentNode
+      tr.remove()
+  })
 
     const ServiceTypesListContainer = document.getElementById('ServiceTypes-list-container')
 
     data.serviceTypes.forEach(serviceTypes => {
         const newServiceTypesTr = document.createElement('tr')
 
-        newServiceTypesTr.id = serviceTypes.id
+        newServiceTypesTr.id = `servicetypes-id-${serviceTypes.id}`
         newServiceTypesTr.innerHTML = `
           <td>${serviceTypes.name}</td>
           <td>${serviceTypes.price}</td>
           <td>${serviceTypes.duration}</td>
           <td><button type="button" class="btn btn-warning">Atualizar</button>
-          <button type="button" class="btn btn-danger">Excluir</button></td> 
+          <button type="button" class="btn btn-danger delete-button" onclick="deleteServiceTypes(${serviceTypes.id})">Excluir</button></td> 
         `
         ServiceTypesListContainer.appendChild(newServiceTypesTr)
     })
@@ -47,3 +52,21 @@ CreateServiceTypes.addEventListener('click', async (event) => {
 
     await getServiceTypes()
 })
+
+async function deleteServiceTypes(serviceTypesId){
+    const deleteResult = await fetch(`http://localhost:3000/api/servicetypes/${serviceTypesId}`, {
+        method: 'DELETE'
+    })
+
+    const deleteResultJson = await deleteResult.json()
+
+    if(deleteResultJson.deleteServicetypesCount < 1){
+        console.error("Nenhum serviço foi deletado")
+        return
+    } 
+    
+    const serviceToBeDeleted = document.getElementById(`servicetypes-id-${serviceTypesId}`)
+    serviceToBeDeleted.remove()
+
+    return deleteResultJson
+}

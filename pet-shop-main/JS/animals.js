@@ -4,13 +4,18 @@ async function getAnimalsList() {
     const data = await response.json();
   
     console.log(data);
+    const animals = document.querySelectorAll('tr > td')
+    animals.forEach(td => {
+      const tr = td.parentNode
+      tr.remove()
+  })
      
     const animalsListContainer = document.getElementById('animal-list-container')
     
     data.animals.forEach(animals => {
         const newAnimaltr = document.createElement('tr')
         
-        newAnimaltr.id = animals.id
+        newAnimaltr.id = `animal-id-${animals.id}`
         newAnimaltr.innerHTML = `
           <td>${animals.name}</td>
           <td>${animals.breed}</td>
@@ -19,7 +24,7 @@ async function getAnimalsList() {
           <td>${animals.owner_name}</td>
           <td>${animals.is_vacinated}</td>
           <td><button type="button" class="btn btn-warning">Atualizar</button>
-          <button type="button" class="btn btn-danger">Excluir</button></td> 
+          <button type="button" class="btn btn-danger delete-button" onclick="deleteAnimal(${animals.id})">Excluir</button></td> 
         `
         
         animalsListContainer.appendChild(newAnimaltr)
@@ -58,3 +63,21 @@ event.preventDefault();
 
     await getAnimalsList()
 })
+
+async function deleteAnimal(animalId){
+    const deleteResult = await fetch(`http://localhost:3000/api/animals/${animalId}`, {
+        method: 'DELETE'
+    })
+
+    const deleteResultJson = await deleteResult.json()
+
+    if(deleteResultJson.deleteAnimalsCount < 1){
+        console.error("Nenhum animal foi deletado")
+        return
+    } 
+    
+    const animalToBeDeleted = document.getElementById(`animal-id-${animalId}`)
+    animalToBeDeleted.remove()
+
+    return deleteResultJson
+}
